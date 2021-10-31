@@ -1,4 +1,7 @@
-export const MATCH_PROGRAM_STUDENT = {
+import { IProgram } from "../../models/program";
+import { IStudent } from "../../models/student";
+
+export const MATCH_PROGRAM_STUDENT: { student: IStudent, program: IProgram } = {
   student: {
     id: 10974,
     name: 'Andre Treib',
