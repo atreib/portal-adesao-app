@@ -1,5 +1,5 @@
 import '../styles/global.css';
-import '../styles/main.css';
+//import '../styles/main.css';
 import { AppProps } from 'next/app'
 import { UserProvider } from '@auth0/nextjs-auth0';
 

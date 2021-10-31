@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "generate:tailwindcss": "npx tailwindcss -o styles/main.css --minify",
-    "dev": "yarn run generate:tailwindcss --watch & next dev",
-    "build": "yarn run generate:tailwindcss ; next build",
-    "start": "yarn run generate:tailwindcss ; next start"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.6.1",
+    "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.5",
+    "@tailwindcss/forms": "^0.3.4",
     "date-fns": "^2.11.1",
     "gray-matter": "^4.0.2",
     "next": "^11.0.0",
