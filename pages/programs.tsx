@@ -1,6 +1,8 @@
+import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { LockClosedIcon } from "@heroicons/react/solid";
+import { LoadingPage } from '../components/pages/loading';
 
-const LoginPage = () => {
+const ProgramsPage = () => {
   return (
     <div className="fixed w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gray-900">
       <div className="max-w-md w-full">
@@ -10,20 +12,20 @@ const LoginPage = () => {
             src="/images/difoccus-logo.png"
             alt="Difoccus"
           />
-          <h2 className="mt-4 text-center text-3xl font-extralight text-white">Acesse a sua conta</h2>
+          <h2 className="mt-4 text-center text-3xl font-extralight text-white">Escolher curso</h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Vivencie a sua formatura antes, durante e depois.
+            Digite o seu CPF e a senha do seu curso, ou selecione uma das opções abaixo:
           </p>
           <div className="mt-8 space-y-6">
             <div className="flex items-center justify-between">
               <a
-                href='/api/auth/login'
+                href='/api/auth/logout'
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-dark-800 bg-white hover:bg-opacity-90 focus:outline-none"
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <LockClosedIcon className="h-5 w-5 text-white0 group-hover:text-opacity-90" aria-hidden="true" />
                 </span>
-                Entrar
+                Sair
               </a>
             </div>
           </div>
@@ -33,4 +35,7 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default withPageAuthRequired(ProgramsPage, {
+  onRedirecting: () => <LoadingPage />,
+  onError: (error) => <h1>{error}</h1>
+});
