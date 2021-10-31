@@ -1,3 +1,4 @@
+import { useRouter } from "next/dist/client/router";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ProgramContext } from "../../../contexts/program-context";
@@ -14,7 +15,8 @@ interface IField {
 }
 
 export const ProgramsForm = () => {
-  const { addProgram } = useContext(ProgramContext);
+  const router = useRouter();
+  const { addProgram, selectProgram } = useContext(ProgramContext);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -22,8 +24,9 @@ export const ProgramsForm = () => {
     setIsSubmitting(true);
     const match = await matchProgramStudent(studentCpf, programPassword);
     addProgram(match.program);
-    console.log(match);
-    setIsSubmitting(false);
+    selectProgram(match.program);
+    //router.push('/dashboard');
+    //setIsSubmitting(false);
   }
 
   const fields: IField[] = [
