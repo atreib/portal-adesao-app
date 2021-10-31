@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { ProgramContext } from "../../../contexts/program-context";
 import { matchProgramStudent } from "../../../services/programs";
 import { Spinner } from "../../loading/spinner";
 interface IField {
@@ -13,13 +14,16 @@ interface IField {
 }
 
 export const ProgramsForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState(true);
+  const { addProgram } = useContext(ProgramContext);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async ({ studentCpf, programPassword }) => {
     setIsSubmitting(true);
     const match = await matchProgramStudent(studentCpf, programPassword);
+    addProgram(match.program);
     console.log(match);
+    setIsSubmitting(false);
   }
 
   const fields: IField[] = [
