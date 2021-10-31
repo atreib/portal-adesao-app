@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "generate:tailwindcss": "npx tailwindcss -o styles/main.css --minify",
+    "dev": "yarn run generate:tailwindcss --watch & next dev",
+    "build": "yarn run generate:tailwindcss ; next build",
+    "start": "yarn run generate:tailwindcss ; next start"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.6.1",
